@@ -9,9 +9,17 @@ import com.example.myapplication.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sessionManager = SessionManager(this)
+
+        if (sessionManager.isLoggedIn()) {
+            navigateToDashboard()
+            return
+        }
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,6 +37,8 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if (validateCredentials(studentId, password)) {
+                sessionManager.saveLoginSession(studentId)
+                Toast.makeText(this, "Anda berhasil login!", Toast.LENGTH_SHORT).show()
                 navigateToDashboard()
             } else {
                 Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show()

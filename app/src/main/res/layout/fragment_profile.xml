@@ -18,7 +18,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="280dp"
                 android:background="@color/navy_blue" />
 
             <ImageView
@@ -51,6 +51,7 @@
                     app:civ_border_width="3dp" />
 
                 <TextView
+                    android:id="@+id/tvProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

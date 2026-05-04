@@ -13,7 +13,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
         
-        // Logika dashboard di sini
+        val sessionManager = SessionManager(requireContext())
+        val username = sessionManager.getUsername()
+        
+        // Update welcome text with username from session
+        binding.tvUsername.text = "Selamat Datang, $username"
     }
 
     override fun onDestroyView() {

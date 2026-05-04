@@ -5,11 +5,15 @@
         android:icon="@drawable/ic_dashboard"
         android:title="@string/nav_dashboard" />
     <item
+        android:id="@+id/scheduleFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="Jadwal" />
+    <item
+        android:id="@+id/reminderFragment"
+        android:icon="@drawable/ic_note"
+        android:title="Pengingat" />
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person"
         android:title="@string/nav_profile" />
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_lock"
-        android:title="@string/settings_title" />
 </menu>

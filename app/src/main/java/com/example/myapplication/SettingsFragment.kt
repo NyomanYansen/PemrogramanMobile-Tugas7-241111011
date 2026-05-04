@@ -15,15 +15,25 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSettingsBinding.bind(view)
 
+        val sessionManager = SessionManager(requireContext())
+
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.btnLogout.setOnClickListener {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            requireActivity().finish()
+            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Konfirmasi Keluar")
+                .setMessage("Apakah Anda yakin ingin keluar?")
+                .setPositiveButton("Keluar") { _, _ ->
+                    sessionManager.clearSession()
+                    val intent = Intent(requireContext(), LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+                .setNegativeButton("Batal", null)
+                .show()
         }
     }
 

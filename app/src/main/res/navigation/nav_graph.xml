@@ -27,4 +27,16 @@
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
+    <fragment
+        android:id="@+id/reminderFragment"
+        android:name="com.example.myapplication.ReminderFragment"
+        android:label="Pengingat"
+        tools:layout="@layout/fragment_reminder" />
+
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.myapplication.ScheduleFragment"
+        android:label="Jadwal"
+        tools:layout="@layout/fragment_schedule" />
+
 </navigation>
