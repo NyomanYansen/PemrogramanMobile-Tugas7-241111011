@@ -10,12 +10,11 @@ class ReminderRepository(context: Context) {
 
     fun addReminder(reminder: Reminder): Long {
         val cv = ContentValues().apply {
-            put(DBH.COL_COURSE_CODE, reminder.courseCode)
             put(DBH.COL_TITLE, reminder.title)
             put(DBH.COL_DESCRIPTION, reminder.description)
-            put(DBH.COL_DEADLINE, reminder.deadline)
-            put(DBH.COL_COLOR, reminder.color)
-            put(DBH.COL_IS_ACTIVE, 1)
+            put(DBH.COL_REMIND_TIME, reminder.remindTime)
+            put(DBH.COL_DATE, reminder.date)
+            put(DBH.COL_IS_STATUS, reminder.isStatus)
         }
         return db.writableDatabase.insert(DBH.TABLE_REMINDERS, null, cv)
     }
@@ -31,11 +30,11 @@ class ReminderRepository(context: Context) {
                 reminders.add(
                     Reminder(
                         id = it.getInt(it.getColumnIndexOrThrow(DBH.COL_ID)),
-                        courseCode = it.getString(it.getColumnIndexOrThrow(DBH.COL_COURSE_CODE)),
                         title = it.getString(it.getColumnIndexOrThrow(DBH.COL_TITLE)),
                         description = it.getString(it.getColumnIndexOrThrow(DBH.COL_DESCRIPTION)),
-                        deadline = it.getString(it.getColumnIndexOrThrow(DBH.COL_DEADLINE)),
-                        color = it.getString(it.getColumnIndexOrThrow(DBH.COL_COLOR)) ?: "#3B82F6"
+                        remindTime = it.getString(it.getColumnIndexOrThrow(DBH.COL_REMIND_TIME)),
+                        date = it.getString(it.getColumnIndexOrThrow(DBH.COL_DATE)),
+                        isStatus = it.getInt(it.getColumnIndexOrThrow(DBH.COL_IS_STATUS))
                     )
                 )
             }
@@ -53,7 +52,7 @@ class ReminderRepository(context: Context) {
 
     fun countActiveReminders(): Int {
         val cursor = db.readableDatabase.rawQuery(
-            "SELECT COUNT(*) FROM ${DBH.TABLE_REMINDERS} WHERE ${DBH.COL_IS_ACTIVE} = 1",
+            "SELECT COUNT(*) FROM ${DBH.TABLE_REMINDERS} WHERE ${DBH.COL_IS_STATUS} = 1",
             null
         )
         return cursor.use { if (it.moveToFirst()) it.getInt(0) else 0 }

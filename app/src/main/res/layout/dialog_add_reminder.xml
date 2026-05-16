@@ -8,17 +8,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Kode MK"
-        android:layout_marginBottom="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCourseCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:hint="Judul Tugas"
         android:layout_marginBottom="8dp">
         <com.google.android.material.textfield.TextInputEditText
@@ -44,12 +33,24 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Deadline (contoh: Besok, 23:59)"
+        android:hint="Tanggal (YYYY-MM-DD)"
         android:layout_marginBottom="8dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDeadline"
+            android:id="@+id/etDate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="date"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Waktu Pengingat (HH:mm)">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRemindTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
